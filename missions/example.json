@@ -1,0 +1,110 @@
+{
+  "mission_id": "hover_return_test_001",
+  "type": "hover_and_return_test",
+  "name": "Advanced Hover Test Mission",
+  "description": "Tests the craft's ability to ascend to a specific altitude, maintain a hover with precise control, and then safely return to the launch site.",
+  "vehicle_id": "TEST_001_VEHICLE_001",
+  "launch_date_time": "Year 1, Day 45, 00:00:00",
+  "launch_site": "Kerbal Space Center",
+  "save_log": true,
+  "mission_profiles": {
+    "countdown_profile": {
+      "total_countdown_seconds": 10,
+      "override_countdown": true,
+      "events": [
+        {
+          "event_id": "activate_stage",
+          "description": "Activation of stage 2",
+          "stage": 2,
+          "time_relative_to_launch": "-5"
+        },
+        {
+          "event_id": "activate_stage",
+          "description": "Activation of stage 1",
+          "stage": 1,
+          "time_relative_to_launch": "2"
+        },
+        {
+          "event_id": "next_stage",
+          "description": "Activation of next stage",
+          "time_relative_to_launch": "3"
+        },
+        {
+          "event_id": "set_throttle",
+          "description": "set a new throttle",
+          "throttle": 0.5,
+          "time_relative_to_launch": "4"
+        }
+      ]
+    },
+    "ascend_profile": {
+      "target_altitude": 500,
+      "target_ascend_speed": 15,
+      "engine_throttle_range": {
+        "max": 0.75,
+        "min": 0.25
+      },
+      "guidance_mode": "vertical",
+      "alerts": [
+        {
+          "alert_id": "stabilization_alert",
+          "description": "Alert triggered when pitch, roll, or yaw exceeds tolerance",
+          "tolerances": {
+            "pitch": 5,
+            "roll": 5,
+            "yaw": 5
+          },
+          "severity": "warning"
+        }
+      ]
+    },
+    "hover_profile": {
+      "hover_altitude": 500,
+      "hover_duration": 15,
+      "stabilization_mode": "auto",
+      "engine_throttle_range": {
+        "max_hover": 0.5,
+        "min_hover": 0.1
+      },
+      "hover_position": {
+        "static": true
+      }
+    },
+    "descend_profile": {
+      "landing_site": {
+        "return_to_launchpad": true
+      },
+      "target_descend_speed": 10,
+      "engine_throttle_range": {
+        "max_descend": 0.5,
+        "min_descend": 0.1
+      },
+      "guidance_mode": "vertical"
+    }
+  },
+  "objectives": [
+    {
+      "objective_id": "safe_landing",
+      "description": "Achieve a safe landing within specified tolerance of the designated site.",
+      "tolerance_distance": 5
+    }
+  ],
+  "general_alerts": [
+    {
+      "alert_id": "communication_check",
+      "description": "Ensure continuous communication with ground control.",
+      "condition": "communication_signal_strength",
+      "minimum_strength": 10,
+      "severity": "critical"
+    }
+  ],
+  "success_criteria": {
+    "objectives_met": true,
+    "vehicle_status": "intact",
+    "landing_precision": 10
+  },
+  "notes": [
+    "changed vehicle propulsion system",
+    "Upated Profile"
+  ]
+}
